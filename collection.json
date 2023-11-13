@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "6998f693-8950-4637-ae39-f3129c3e2366",
+		"name": "Lab5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30172570"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "note_name",
+							"value": "daily chores",
+							"type": "text"
+						},
+						{
+							"key": "note",
+							"value": "some activities ",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/UploadForm.html",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/UploadForm.html"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/notes"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/notes/daily%20chores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/notes/daily%20chores"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/notes/somenewnote",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8000/notes/somenewnote"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/notes/daily%20chores",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "justice for fantasy battles\r\n",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": "http://localhost:8000/notes/daily%20chores"
+			},
+			"response": []
+		}
+	]
+}
