@@ -7,6 +7,15 @@ const upload = multer();
 
 app.use(bodyParser.json());
 
+const dataFilePath = 'data.json';
+
+
+if (!fs.existsSync(dataFilePath)) {
+  const initialData = {}; 
+  fs.writeFileSync(dataFilePath, JSON.stringify(initialData, null, 2));
+}
+
+
 app.get("/UploadForm.html", (req, res) => {
   res.sendFile(__dirname + '/UploadForm.html');
 });
