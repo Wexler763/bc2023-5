@@ -58,20 +58,15 @@ app.get("/notes/:noteName", (req, res) => {
 });
 
 app.post("/upload", upload.none(), (req, res) => {
-  const formData = {};
-
-  for (const field in req.body) {
-    formData[field] = req.body[field];
-  }
+  const formData = {
+    note_name: req.body.note_name,
+    note: req.body.note
+  };
 
   if (!formData.note_name || !formData.note) {
     res.status(400).send("Both 'note_name' and 'note' fields are required.");
     return;
   }
-
-  const newData = {
-    [formData.note_name]: formData.note
-  };
 
   fs.readFile("data.json", "utf8", (err, data) => {
     if (err) {
@@ -81,11 +76,13 @@ app.post("/upload", upload.none(), (req, res) => {
 
     let jsonData = JSON.parse(data);
 
+    // Check if the note name already exists
     if (jsonData.hasOwnProperty(formData.note_name)) {
       return res.status(400).send("Note with this name already exists. Choose a different name.");
     }
 
-    jsonData = { ...jsonData, ...newData };
+    // Add the new note to the data
+    jsonData[formData.note_name] = formData.note;
 
     fs.writeFile("data.json", JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
@@ -93,7 +90,7 @@ app.post("/upload", upload.none(), (req, res) => {
         return res.status(500).send("Error writing to the JSON file");
       }
 
-      res.send("Data written successfully");
+      res.status(201).send("Data written successfully");
     });
   });
 });
